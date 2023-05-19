@@ -31,6 +31,9 @@ export default function SearchEngine() {
 
   return (
     <div>
+      <a href="https://github.com/ZoeSttn/my-reactapp">
+        Github repository for this project{" "}
+      </a>
       <form onSubmit={handleSubmit}>
         {" "}
         <input
