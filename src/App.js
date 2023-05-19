@@ -7,7 +7,6 @@ function App() {
     <div className="App">
       <Heading />
       <SearchEngine />
-      Github link:
     </div>
   );
 }
