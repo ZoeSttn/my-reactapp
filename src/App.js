@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.css";
 import "./styles.css";
 import Heading from "./Heading.js";
 import SearchEngine from "./SearchEngine.js";
@@ -5,8 +6,10 @@ import SearchEngine from "./SearchEngine.js";
 function App() {
   return (
     <div className="App">
-      <Heading />
-      <SearchEngine />
+      <div className="container">
+        <Heading />
+        <SearchEngine />
+      </div>
     </div>
   );
 }
