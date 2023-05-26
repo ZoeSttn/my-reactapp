@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Results from "./Results.js";
 import axios from "axios";
 
 export default function SearchEngine() {
@@ -8,6 +7,7 @@ export default function SearchEngine() {
   let [description, setDescription] = useState("");
   let [humidity, setHumidity] = useState("");
   let [wind, setWind] = useState("");
+  let [icon, setIcon] = useState("");
 
   function changeCity(event) {
     setCity(event.target.value);
@@ -15,42 +15,68 @@ export default function SearchEngine() {
 
   function handleResponse(response) {
     console.log(response);
-    setTemperature(response.data.main.temp);
-    setDescription(response.data.weather[0]["main"]);
-    setHumidity(response.data.main.humidity);
+    setTemperature(response.data.temperature.current);
+    setDescription(response.data.condition.description);
+    setHumidity(response.data.temperature.humidity);
     setWind(response.data.wind.speed);
+    setIcon(response.data.condition.icon_url);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=9e0fb79c2f66d0cd0dcf06710976a873`;
+    let url = `https://api.shecodes.io/weather/v1/current?query=${city}&units=metric&key=tafff7052b3e143e4c8e9o14c3f6bfc4`;
 
     axios.get(url).then(handleResponse);
   }
 
   return (
-    <div>
-      <a href="https://github.com/ZoeSttn/my-reactapp">
-        Github repository for this project{" "}
-      </a>
-      <br />
-      <form onSubmit={handleSubmit}>
-        {" "}
-        <input
-          type="text"
-          placeholder="Search for a city"
-          onChange={changeCity}
-        />{" "}
-        <input type="submit" value="Search" />
-      </form>
-
-      <Results
-        temperature={temperature}
-        description={description}
-        humidity={humidity}
-        wind={wind}
-      />
+    <div className="container">
+      <div className="row">
+        <div className="col-sm city-search">
+          <form onSubmit={handleSubmit}>
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search for a city"
+                aria-label="Search for a city"
+                aria-describedby="basic-addon2"
+                onChange={changeCity}
+              />
+              <div className="input-group-append">
+                <button className="btn btn-outline-secondary" type="submit">
+                  Search
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-sm current-weather-icon">
+          {" "}
+          <img
+            href="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+            alt="Weather icon"
+          />
+        </div>
+        <div className="col-sm current-temperature">{temperature}</div>
+        <div className="col-sm current-conditions">
+          <ul>
+            <li>{description}</li>
+            <li>Humidity: {humidity}%</li>
+            <li>Wind: {Math.round(wind)} kmph</li>
+          </ul>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-sm forecast-one">forecast</div>
+        <div className="col-sm">forecast</div>
+        <div className="col-sm">forecast</div>
+        <div className="col-sm">forecast</div>
+        <div className="col-sm">forecast</div>
+      </div>
     </div>
   );
 }

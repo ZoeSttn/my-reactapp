@@ -2,3 +2,7 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+div.col-sm {
+  border: solid 2px red;
+}
