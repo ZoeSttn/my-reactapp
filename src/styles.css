@@ -1,8 +1,6 @@
 .App {
   font-family: sans-serif;
   text-align: center;
-}
-
-div.col-sm {
-  border: solid 2px red;
+  max-width: 500px;
+  margin: 0 auto;
 }

@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
+import DateAndTime from "./DateAndTime";
+import "./SearchEngine.css";
 
 export default function SearchEngine() {
   let [city, setCity] = useState("");
   let [temperature, setTemperature] = useState("");
-  let [description, setDescription] = useState("");
+  let [description, setDescription] = useState("cloudy");
   let [humidity, setHumidity] = useState("");
   let [wind, setWind] = useState("");
-  let [icon, setIcon] = useState("");
+  let [icon, setIcon] = useState(
+    "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+  );
 
   function changeCity(event) {
     setCity(event.target.value);
   }
 
   function handleResponse(response) {
-    console.log(response);
     setTemperature(response.data.temperature.current);
     setDescription(response.data.condition.description);
     setHumidity(response.data.temperature.humidity);
@@ -53,29 +56,33 @@ export default function SearchEngine() {
           </form>
         </div>
       </div>
-      <div className="row">
-        <div className="col-sm current-weather-icon">
-          {" "}
-          <img
-            href="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
-            alt="Weather icon"
-          />
+      <div className="results-div">
+        <div className="row">
+          <div className="col-sm current-weather-icon">
+            {" "}
+            <img src={icon} alt="Weather icon" />
+          </div>
+          <div className="col-sm current-temperature pt-3">
+            {Math.round(temperature)}
+            <sup>°C</sup>
+          </div>
+          <div className="col-sm current-conditions pt-3">
+            <ul>
+              <li>{description}</li>
+              <li>humidity: {humidity}%</li>
+              <li>wind: {Math.round(wind)} kmph</li>
+              <br />
+              <DateAndTime date="16:00" />
+            </ul>
+          </div>
         </div>
-        <div className="col-sm current-temperature">{temperature}</div>
-        <div className="col-sm current-conditions">
-          <ul>
-            <li>{description}</li>
-            <li>Humidity: {humidity}%</li>
-            <li>Wind: {Math.round(wind)} kmph</li>
-          </ul>
+        <div className="row">
+          <div className="col-sm forecast-one"></div>
+          <div className="col-sm forecast-two"></div>
+          <div className="col-sm forecast-three"></div>
+          <div className="col-sm forecast-four"></div>
+          <div className="col-sm forecast-five"></div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-sm forecast-one">forecast</div>
-        <div className="col-sm">forecast</div>
-        <div className="col-sm">forecast</div>
-        <div className="col-sm">forecast</div>
-        <div className="col-sm">forecast</div>
       </div>
     </div>
   );

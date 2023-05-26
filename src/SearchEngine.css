@@ -1,0 +1,20 @@
+.results-div {
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.current-temperature {
+  font-size: 45px;
+}
+
+.current-conditions ul {
+  list-style-type: none;
+  font-size: 13px;
+  color: #6b6b6b;
+  width: fit-content;
+}
+
+sup {
+  color: grey;
+}
