@@ -6,6 +6,7 @@
 
 .current-temperature {
   font-size: 45px;
+  padding-top: 30px;
 }
 
 .current-conditions ul {
@@ -13,6 +14,7 @@
   font-size: 13px;
   color: #6b6b6b;
   width: fit-content;
+  padding-top: 15px;
 }
 
 sup {

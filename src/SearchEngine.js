@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import DateAndTime from "./DateAndTime";
 import "./SearchEngine.css";
+import Temperature from "./Temperature";
 
 export default function SearchEngine() {
-  let [city, setCity] = useState("");
+  let [city, setCity] = useState("Tokyo");
   let [temperature, setTemperature] = useState("");
   let [description, setDescription] = useState("cloudy");
   let [humidity, setHumidity] = useState("");
@@ -12,6 +13,7 @@ export default function SearchEngine() {
   let [icon, setIcon] = useState(
     "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
   );
+  let [timestamp, setTimestamp] = useState("");
 
   function changeCity(event) {
     setCity(event.target.value);
@@ -23,6 +25,7 @@ export default function SearchEngine() {
     setHumidity(response.data.temperature.humidity);
     setWind(response.data.wind.speed);
     setIcon(response.data.condition.icon_url);
+    setTimestamp(response.data.time);
   }
 
   function handleSubmit(event) {
@@ -58,21 +61,20 @@ export default function SearchEngine() {
       </div>
       <div className="results-div">
         <div className="row">
-          <div className="col-sm current-weather-icon">
+          <div className="col-sm current-weather-icon pt-2">
             {" "}
             <img src={icon} alt="Weather icon" />
           </div>
-          <div className="col-sm current-temperature pt-3">
-            {Math.round(temperature)}
-            <sup>°C</sup>
+          <div className="col-sm current-temperature">
+            <Temperature celsius={temperature} />
           </div>
-          <div className="col-sm current-conditions pt-3">
+          <div className="col-sm current-conditions">
             <ul>
               <li>{description}</li>
               <li>humidity: {humidity}%</li>
               <li>wind: {Math.round(wind)} kmph</li>
               <br />
-              <DateAndTime date="16:00" />
+              <DateAndTime date={timestamp} />
             </ul>
           </div>
         </div>
