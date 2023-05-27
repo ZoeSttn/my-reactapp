@@ -11,12 +11,8 @@
 
 .current-conditions ul {
   list-style-type: none;
-  font-size: 13px;
+  font-size: 12px;
   color: #6b6b6b;
   width: fit-content;
   padding-top: 15px;
-}
-
-sup {
-  color: grey;
 }

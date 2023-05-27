@@ -10,10 +10,12 @@ export default function SearchEngine() {
   let [description, setDescription] = useState("cloudy");
   let [humidity, setHumidity] = useState("");
   let [wind, setWind] = useState("");
+  let [cityName, setCityName] = useState("Tokyo");
   let [icon, setIcon] = useState(
     "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
   );
   let [timestamp, setTimestamp] = useState("");
+  const [userHasSearched, setUserHasSearched] = useState(false);
 
   function changeCity(event) {
     setCity(event.target.value);
@@ -26,14 +28,23 @@ export default function SearchEngine() {
     setWind(response.data.wind.speed);
     setIcon(response.data.condition.icon_url);
     setTimestamp(response.data.time);
+    setCityName(response.data.city);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    setUserHasSearched(true);
+    apiGetWeather();
+  }
 
+  function apiGetWeather() {
     let url = `https://api.shecodes.io/weather/v1/current?query=${city}&units=metric&key=tafff7052b3e143e4c8e9o14c3f6bfc4`;
 
     axios.get(url).then(handleResponse);
+  }
+
+  if (userHasSearched === false) {
+    apiGetWeather();
   }
 
   return (
@@ -66,6 +77,7 @@ export default function SearchEngine() {
             <img src={icon} alt="Weather icon" />
           </div>
           <div className="col-sm current-temperature">
+            <span className="cityName">{cityName}</span>
             <Temperature celsius={temperature} />
           </div>
           <div className="col-sm current-conditions">
