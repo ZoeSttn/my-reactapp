@@ -6,7 +6,7 @@
 
 .current-temperature {
   font-size: 45px;
-  padding-top: 30px;
+  padding-top: 45px;
 }
 
 .current-conditions ul {
@@ -15,4 +15,15 @@
   color: #6b6b6b;
   width: fit-content;
   padding-top: 15px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.cityName {
+  font-size: 15px;
+}
+
+.current-weather-icon {
+  padding-top: 25px;
 }

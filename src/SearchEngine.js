@@ -69,16 +69,17 @@ export default function SearchEngine() {
         </div>
         <div className="results-div">
           <div className="row">
-            <div className="col-sm current-weather-icon pt-2">
+            <div className="col-sm current-weather-icon">
               {" "}
               <img src={icon} alt="Weather icon" />
             </div>
             <div className="col-sm current-temperature">
-              <span className="cityName">{cityName}</span>
               <Temperature celsius={temperature} />
             </div>
             <div className="col-sm current-conditions">
               <ul>
+                <span className="cityName">{cityName}</span>
+                <br />
                 <li>{description}</li>
                 <li>humidity: {humidity}%</li>
                 <li>wind: {Math.round(wind)} kmph</li>
