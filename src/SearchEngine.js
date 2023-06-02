@@ -17,7 +17,11 @@ export default function SearchEngine() {
   );
   let [timestamp, setTimestamp] = useState("");
   let [userHasSearched, setUserHasSearched] = useState(false);
-  let [forecast, setForecast] = useState({});
+  let [forecastOne, setForecastOne] = useState({});
+  let [forecastTwo, setForecastTwo] = useState({});
+  let [forecastThree, setForecastThree] = useState({});
+  let [forecastFour, setForecastFour] = useState({});
+  let [forecastFive, setForecastFive] = useState({});
 
   function changeCity(event) {
     setCity(event.target.value);
@@ -34,21 +38,24 @@ export default function SearchEngine() {
     setUserHasSearched(true);
   }
 
-  function handleForecast(response) {
-    setForecast(response.data.daily);
-    console.log(forecast);
-    setUserHasSearched(true);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     apiGetWeather();
   }
 
+  function handleForecast(response) {
+    setForecastOne(response.data.daily[0]);
+    setForecastTwo(response.data.daily[1]);
+    setForecastThree(response.data.daily[2]);
+    setForecastFour(response.data.daily[3]);
+    setForecastFive(response.data.daily[4]);
+  }
+
   function apiGetWeather() {
     let url = `https://api.shecodes.io/weather/v1/current?query=${city}&units=metric&key=tafff7052b3e143e4c8e9o14c3f6bfc4`;
-    let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=tafff7052b3e143e4c8e9o14c3f6bfc4&units=metric`;
     axios.get(url).then(handleResponse);
+    let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=tafff7052b3e143e4c8e9o14c3f6bfc4&units=metric`;
+
     axios.get(forecastUrl).then(handleForecast);
   }
 
@@ -98,7 +105,7 @@ export default function SearchEngine() {
             </div>
           </div>
           <div className="row">
-            <Forecast />
+            <Forecast forecast={forecastOne} />
           </div>
         </div>
       </div>

@@ -19,7 +19,6 @@ export default function DateAndTime(props) {
     hour = "0" + hour;
   }
   let minute = date.getMinutes();
-  console.log(date);
   if (minute <= 9) {
     minute = "0" + minute;
   }
