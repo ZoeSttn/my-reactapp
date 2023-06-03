@@ -1,0 +1,11 @@
+.forecast-weekday {
+  font-size: 14px;
+}
+
+.forecast-temperature {
+  font-size: 12px;
+}
+
+.forecast-weather-icon {
+  width: 60px;
+}

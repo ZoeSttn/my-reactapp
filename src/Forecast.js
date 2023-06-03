@@ -1,4 +1,5 @@
 import React from "react";
+import "./Forecast.css";
 
 export default function Forecast(props) {
   let week = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
@@ -11,16 +12,18 @@ export default function Forecast(props) {
 
   let icon = props.forecast.condition.icon_url;
 
-  console.log(props.forecast);
-
   return (
     <div className="col-sm">
-      <div>{weekday}</div>
-      <div>
-        {maxtemp} | {mintemp}
+      <div className="forecast-weekday">{weekday}</div>
+      <div className="forecast-temperature">
+        {maxtemp}°C | {mintemp}°C
       </div>
       <div>
-        <img src={icon} />
+        <img
+          className="forecast-weather-icon"
+          alt="Weather Forecast Icon"
+          src={icon}
+        />
       </div>
     </div>
   );

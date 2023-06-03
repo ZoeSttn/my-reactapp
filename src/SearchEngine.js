@@ -104,8 +104,12 @@ export default function SearchEngine() {
               </ul>
             </div>
           </div>
-          <div className="row">
+          <div className="row pt-2">
             <Forecast forecast={forecastOne} />
+            <Forecast forecast={forecastTwo} />
+            <Forecast forecast={forecastThree} />
+            <Forecast forecast={forecastFour} />
+            <Forecast forecast={forecastFive} />
           </div>
         </div>
       </div>
